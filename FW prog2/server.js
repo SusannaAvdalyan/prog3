@@ -78,5 +78,89 @@ function matrixGenerator(
   
 matrix = matrixGenerator(20, 15, 40, 1, 25, 5);
 
-io.socket.emit("send matrix", matrix)
+io.sockets.emit("send matrix", matrix)
   
+
+ grassArr = [];
+ grassEaterArr = [];
+ predatorArr = [];
+ VacuumCleanerArr = [];
+ builderArr = [];
+
+
+ Grass = require("./grass")
+ GrassEater = require("./grassEater")
+ Predator  = require("./predator")
+ Builder = require("./builder")
+ VacuumCleaner = require("./vaccumCleaner")
+
+
+ function createObject(){
+  for (var y = 0; y < matrix.length; y++) {
+    for (var x = 0; x < matrix[y].length; x++) {
+      if (matrix[y][x] == 1) {
+        var gr = new Grass(x, y);
+
+        grassArr.push(gr);
+      } else if (matrix[y][x] == 2) {
+        var grEat = new GrassEater(x, y);
+
+        grassEaterArr.push(grEat);
+      } else if (matrix[y][x] == 3) {
+        var pre = new Predator(x, y);
+
+        predatorArr.push(pre);
+      } else if (matrix[y][x] == 4) {
+        var vc = new VacuumCleaner(x, y);
+
+        VacuumCleanerArr.push(vc);
+      }
+      else if (matrix[y][x] == 5) {
+        var bd = new Builder(x, y);
+
+        builderArr.push(bd);
+      }
+    }
+  }
+
+io.sockets.emit("send matrix", matrix)
+   
+ }
+
+
+ function game(){
+
+  for (var i in grassArr) {
+    grassArr[i].mul();
+  }
+
+  for (let i in grassEaterArr) {
+    grassEaterArr[i].mul();
+    grassEaterArr[i].eat();
+  }
+
+  for (let i in predatorArr) {
+    predatorArr[i].mul();
+    predatorArr[i].eat();
+  }
+  for (let i in VacuumCleanerArr) {
+    // let y էիր գրել սա առաջինը
+    VacuumCleanerArr[i].mul();
+    VacuumCleanerArr[i].clean();
+  }
+  for (let i in builderArr) {
+    builderArr[i].eat();
+  }
+
+io.sockets.emit("send matrix", matrix)
+    
+ }
+
+ setInterval(game, 200)
+
+
+
+
+ io.on("connection", () => {
+   createObject(matrix)
+ })

@@ -1,46 +1,17 @@
-var io = io()
+var socket = io()
 
 var side = 35;
 
-var grassArr = [];
-var grassEaterArr = [];
-var predatorArr = [];
-var VacuumCleanerArr = [];
-var builderArr = [];
+
 
 function setup() {
   frameRate(10);
-  createCanvas(matrix[0].length * side, matrix.length * side);
+  createCanvas(20 * side, 20 * side);
 
-  for (var y = 0; y < matrix.length; y++) {
-    for (var x = 0; x < matrix[y].length; x++) {
-      if (matrix[y][x] == 1) {
-        var gr = new Grass(x, y);
-
-        grassArr.push(gr);
-      } else if (matrix[y][x] == 2) {
-        var grEat = new GrassEater(x, y);
-
-        grassEaterArr.push(grEat);
-      } else if (matrix[y][x] == 3) {
-        var pre = new Predator(x, y);
-
-        predatorArr.push(pre);
-      } else if (matrix[y][x] == 4) {
-        var vc = new VacuumCleaner(x, y);
-
-        VacuumCleanerArr.push(vc);
-      }
-      else if (matrix[y][x] == 5) {
-        var bd = new Builder(x, y);
-
-        builderArr.push(bd);
-      }
-    }
-  }
+ 
 }
 
-function draw() {
+function nkarel(matrix) {
   for (var y = 0; y < matrix.length; y++) {
     for (var x = 0; x < matrix[y].length; x++) {
       if (matrix[y][x] == 1) {
@@ -60,25 +31,7 @@ function draw() {
     }
   }
 
-  for (var i in grassArr) {
-    grassArr[i].mul();
-  }
-
-  for (let i in grassEaterArr) {
-    grassEaterArr[i].mul();
-    grassEaterArr[i].eat();
-  }
-
-  for (let i in predatorArr) {
-    predatorArr[i].mul();
-    predatorArr[i].eat();
-  }
-  for (let i in VacuumCleanerArr) {
-    // let y էիր գրել սա առաջինը
-    VacuumCleanerArr[i].mul();
-    VacuumCleanerArr[i].clean();
-  }
-  for (let i in builderArr) {
-    builderArr[i].eat();
-  }
+  
 }
+
+

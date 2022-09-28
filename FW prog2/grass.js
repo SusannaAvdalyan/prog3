@@ -1,10 +1,11 @@
-let livingCreature = require("./LivingCreature")
+let LivingCreature = require("./LivingCreature")
+
 module.exports = class Grass extends LivingCreature{
   
     mul() {
       super.multiply++;
       var emptyCell = super.chooseCell(0);
-      var newCell = emptyCell(Math.floor * Math.random);
+      var newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)];
   
       if (newCell && this.multiply >= 5) {
         var newX = newCell[0];

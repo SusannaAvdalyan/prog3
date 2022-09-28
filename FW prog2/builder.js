@@ -1,9 +1,8 @@
-let livingCreature = require("./LivingCreature")
+let LivingCreature = require("./LivingCreature")
 
 module.exports = class Builder extends LivingCreature{
     constructor(x, y) {
-      this.x = x;
-      this.y = y;
+      super(x,y)
       this.directions = [
         [this.x, this.y - 1],
         [this.x - 1, this.y],
@@ -14,7 +13,7 @@ module.exports = class Builder extends LivingCreature{
     
     eat() {
       let found = this.chooseCell(0);
-      let exact = random(found);
+      let exact = found[Math.floor(Math.random() * found.length)];
   
       if (exact) {
         let x = exact[0];

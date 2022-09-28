@@ -1,8 +1,8 @@
-let livingCreature = require("./LivingCreature")
+let LivingCreature = require("./LivingCreature")
 module.exports = class VacuumCleaner extends LivingCreature{
     constructor(x, y) {
-      this.x = x;
-      this.y = y;
+      super(x,y)
+
       this.multiply = 0;
       this.directions = [
         [this.x - 2, this.y - 2],
@@ -49,7 +49,7 @@ module.exports = class VacuumCleaner extends LivingCreature{
   
         if (y < matrix.length && y >= 0 && x < matrix[0].length && x >= 0) {
           if (matrix[y][x] == char) {
-            found.push(this.directions[i]); //զանգվածիտ անունը found է իսկ դու result ում ես push անոմ
+            found.push(this.directions[i]); 
           }
         }
         if (y < matrix.length && y >= 0 && x < matrix[0].length && x >= 0) {
@@ -67,8 +67,8 @@ module.exports = class VacuumCleaner extends LivingCreature{
     }
     mul() {
       this.multiply++;
-      var emptyCells = this.chooseCell(0, 1, 2);
-      var newCell = random(emptyCells);
+      var emptyCell = this.chooseCell(0, 1, 2);
+      var newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)];
   
       if (newCell && this.multiply >= 10) {
         var newX = newCell[0];
@@ -85,8 +85,8 @@ module.exports = class VacuumCleaner extends LivingCreature{
   
       if (emptyCells) {
         for (var j in emptyCells) {
-          //var -մոռացել ես գրել
-          var newX = emptyCells[j][0]; //այստեղ կրկին i-էիր գրել
+          
+          var newX = emptyCells[j][0]; 
           var newY = emptyCells[j][1];
   
           matrix[newY][newX] = matrix[this.y][this.x];
@@ -96,7 +96,6 @@ module.exports = class VacuumCleaner extends LivingCreature{
           for (var i in grassEaterArr) {
             if (newX == grassEaterArr[i].x && newY == grassEaterArr[i].y) {
               grassEaterArr.splice(i, 1);
-              fill("aqua");
               break;
             }
           }
@@ -111,8 +110,8 @@ module.exports = class VacuumCleaner extends LivingCreature{
               predatorArr.splice(i, 1);
               break;
             }
-          } //
-        } //ջնջելու ամբողջ լոգիկան if-ից դուրս ես գրել
+          } 
+        } 
       }
     }
   }
