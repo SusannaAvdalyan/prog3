@@ -5,11 +5,14 @@ var side = 35;
 
 
 function setup() {
-  frameRate(10);
   createCanvas(20 * side, 20 * side);
 
  
 }
+
+socket.on("weather", function (data) {
+  weath = data;
+})
 
 function nkarel(matrix) {
   for (var y = 0; y < matrix.length; y++) {
@@ -23,10 +26,11 @@ function nkarel(matrix) {
       } else if (matrix[y][x] == 4) {
         fill("brown");
       }else if (matrix[y][x] == 5) {
-        fill(146, 39, 227);
+        fill('purple');
       }else {
         fill("gray");
       }
+    
       rect(x * side, y * side, side, side);
     }
   }
@@ -35,3 +39,16 @@ function nkarel(matrix) {
 }
 
 
+socket.on('send matrix', nkarel)
+function kill() {
+  socket.emit("kill")
+}
+function addGrass() {
+  socket.emit("add grass")
+}
+function addGrassEater() {
+  socket.emit("add grassEater")
+}
+function addPredator() {
+  socket.emit("add predator")
+}

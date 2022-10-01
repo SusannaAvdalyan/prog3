@@ -1,36 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="/socket.io/socket.io.js"></script>
     <style>
-        canvas{
+        canvas {
             margin-left: 570px;
             margin-top: 220 px;
         }
-        body{
-            background-color: rgb(198, 189, 255);
+
+        body {
+            background-color: rgb(174, 200, 255);
         }
-        h1{
+
+        h1 {
             text-align: center;
-            color: rgb(251, 255, 0);
+            color: rgb(140, 0, 255);
             text-shadow: rgb(165, 165, 165) 4px 2px;
+            font-family: Arial, Helvetica, sans-serif;
         }
-        h2{
+
+        h2 {
             text-align: center;
-            color: rgb(16, 175, 16);
+            color: rgb(16, 66, 175);
             text-shadow: rgb(165, 165, 165) 4px 2px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .bt1 {
+            background-color: #d80c0c;
+            border: none;
+            color: white;
+            padding: 10px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        .bt2 {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        .bt3 {
+            background-color: #f7cc0f;
+            border: none;
+            color: white;
+            padding: 10px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        .bt4 {
+            background-color: #ec930c;
+            border: none;
+            color: white;
+            padding: 10px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        .buttons{
+            margin-left: 250px;
+        }
+        .buttons1{
+            margin-left: 250px;
         }
     </style>
 </head>
+
 <body>
-    
+
     <h1>Programmig 2</h1>
-    <h2>Final Work</h2>
-    <script src="/socket.io/socket.io.js"></script>
+    <h1>Final Work</h2>
+        <h1 style="color:rgb(205, 50, 84)">Events</h1>
+    <div class="buttons">
+        
+        <ul>
+            <li>
+                <button class="bt1" onclick="kill()">Kill them all</button>
+            </li><br>
+            <li>
+                <button class="bt2" onclick="addGrass()">Add grass</button>
+            </li><br>
+        </ul>
+    </div>
+    <div class="buttons1">
+    <li>
+        <button class="bt3" onclick="addGrassEater()">Add grass eater</button>
+    </li><br>
+    <li>
+        <button class="bt4" onclick="addPredator()">Add predator</button>
+    </li><br>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
