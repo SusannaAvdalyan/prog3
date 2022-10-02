@@ -90,6 +90,7 @@ io.sockets.emit("send matrix", matrix)
  VacuumCleanerArr = [];
  builderArr = [];
 
+ weath = "winter";
 
  Grass = require("./grass")
  GrassEater = require("./grassEater")
@@ -97,9 +98,6 @@ io.sockets.emit("send matrix", matrix)
  Builder = require("./builder")
  VacuumCleaner = require("./vaccumCleaner")
 
- socket.on("weather", function (data) {
-  weath = data;
-})
 
 
  function createObject(){
@@ -127,22 +125,6 @@ io.sockets.emit("send matrix", matrix)
 
         builderArr.push(bd);
       }
-      var obj = matrix[y][x];
-            if (obj == 1){
-                if(weath == "summer") {
-                fill("green");
-            }else if (weath == "autumn") {
-                fill("#333300");
-            }else if (weath == "winter") {
-                fill("white");
-            }else if (weath == "spring") {
-                fill("#4dffa6");
-            }
-        }else if (obj == 2) {
-                fill("yellow");
-            }else if (obj == 0){
-                fill("grey")
-            }
     }
   }
 
@@ -180,11 +162,6 @@ io.sockets.emit("send matrix", matrix)
  }
 
  setInterval(game, 200)
-
-
-
-
-
 
  function kill() {
   grassArr = [];
@@ -238,6 +215,7 @@ function addPredator() {
 }
 
 function weather() {
+
   if (weath == "winter") {
       weath = "spring"
   }
@@ -250,10 +228,13 @@ function weather() {
   else if (weath == "autumn") {
       weath = "winter"
   }
+
+
   io.sockets.emit('weather', weath)
+  
+
 }
 setInterval(weather, 5000);
-
 
 
 io.on('connection', function (socket) {
@@ -264,3 +245,16 @@ io.on('connection', function (socket) {
   socket.on("add predator", addPredator);
 
 });
+
+var statistics = {};
+
+setInterval(function() {
+    statistics.grass = grassArr.length;
+    statistics.grassEater = grassEaterArr.length;
+    statistics.predator = predatorArr.length;
+    statistics.VacuumCleaner = VacuumCleanerArr.length;
+    statistics.Builder = builderArr.length;
+    fs.writeFile("statistics.json", JSON.stringify(statistics), function(){
+        console.log("send")
+    })
+},1000)

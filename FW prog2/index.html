@@ -71,11 +71,13 @@
             display: inline-block;
             font-size: 16px;
         }
-        .buttons{
-            margin-left: 250px;
-        }
         .buttons1{
             margin-left: 250px;
+        }
+        .mainbt{
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
@@ -83,8 +85,9 @@
 <body>
 
     <h1>Programmig 2</h1>
-    <h1>Final Work</h2>
+    <h1>Final Work</h2>        
         <h1 style="color:rgb(205, 50, 84)">Events</h1>
+    <div class="mainbt">
     <div class="buttons">
         
         <ul>
@@ -103,6 +106,10 @@
     <li>
         <button class="bt4" onclick="addPredator()">Add predator</button>
     </li><br>
+    <li>
+        <button class="bt5" onclick="weather()">Change weather</button>
+    </li><br>
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
     <script src="script.js"></script>
